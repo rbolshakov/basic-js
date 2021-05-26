@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <script>
+
+    // 1
+    var tC = prompt("Напишите температуру в Цельсиях.");
+    tF = (9 / 5) * tC + 32;
+    console.log(tF);
+
+
+    // 2
+    var a = 10, b = 15;
+    a = a + b; //25
+    b = a - b; // 25 - 15 = 10
+    a = a - b; // 25 - 10 = 15
+    console.log("a = " + a + "\nb = " + b);
+
+
+    // 3 Объявить две переменные: admin и name. Записать в name строку "Василий"; Скопировать значение из name в admin. Вывести admin (должно вывести «Василий»).
+    var admin, name = "Василий";
+    admin = name;
+    console.log(admin);
+
+
+    // 4 Чему будет равно JS-выражение 1000 + "108"
+    n = 1000 + "108"; //число + строка = 1000108 (если бы второе было число, то было бы 1108)
+    console.log(n);
+
+
+    // 5
+    // Атрибут async
+    // Поддерживается всеми браузерами, кроме IE9-. Скрипт выполняется полностью асинхронно. 
+    // То есть, при обнаружении <script async src="..."> браузер не останавливает обработку страницы, а спокойно работает дальше. Когда скрипт будет загружен – он выполнится.
+
+    // Атрибут defer
+    // Поддерживается всеми браузерами, включая самые старые IE. Скрипт также выполняется асинхронно, не заставляет ждать страницу, но есть два отличия от async.
+    // Первое – браузер гарантирует, что относительный порядок скриптов с defer будет сохранён.
+    // Второе отличие – скрипт с defer сработает, когда весь HTML-документ будет обработан браузером.
+
+
+
+    //    alert("hello, " + name);
+    //    document.write("<h1> Hello, " + name + "</h1>");
+    // document.write(`<h1> Hello, ${name}!</h1>`)
+    // alert(window);
+    // alert("Project \"SAOS\" - samiy uspeshniy proect companii");
+
+    // var year = +prompt("Year");
+    // // alert(year % 4 == 0);
+    // alert(isNaN(year));
+
+    // var a = 10;
+    // var b = a++;
+    // console.log('a=' + a + '\nb=' + b);
+    // var list = '<ul>';
+    // list += '<li> 1 elem </li>';
+    // list += '<li> 2 elem </li>';
+    // list += '<li> 3 elem </li>';
+    // list += '</ul>';
+    // document.write(list);
+    // var a = 10, b = 'str', c = null;
+    // alert(typeof (c));
+
+    // var user = {
+    //   login: "admin",
+    //   pass: "123"
+    // }
+    // alert("Login: " + user.login + "\nPassword: " + user.pass);
+    // var day = +prompt("Write number day of week");
+    // // var isWorkDay = day > 0 && day < 6;
+    // // alert(isWorkDay);
+    // var isWeekend = day == 6 || day == 7;
+    // alert(!isWeekend);
+  </script>
+</head>
+
+<body></body>
+
+</html>
