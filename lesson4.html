@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <script>
+    //------------------------------------------------------- 1 задача ------------------------------------------------------------------------
+
+    // 1. Написать функцию, преобразующую число в объект. Передавая на вход число от 0 до 999, мы должны получить на выходе объект, в котором в соответствующих свойствах описаны единицы, десятки и сотни. Например, для числа 245 мы должны получить следующий объект: {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}. Если число превышает 999, необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
+
+    var max = 999; //переменная с максимальным значением
+    var digit = { //переменная в которой много свойств объекта
+      number: prompt("Введите число от 0 до 999."), //запрашиваем у пользователя число
+      units: 0,
+      tens: 0, //десятые
+      hundreds: 0,//сотые
+    };
+    if (digit.number <= 9) {
+      digit.units = digit.number;
+    } else if (digit.number <= 999) {
+      digit.units = Math.floor(digit.number % 10);
+      digit.tens = Math.floor(digit.number / 10 % 10);
+      digit.hundreds = Math.floor(digit.number / 100 % 10);
+    } else {
+      digit.number = 0;
+      console.log('Вы ввели число за диапазоном 0 - 999');
+    }
+    console.log(digit);
+
+    //-------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------------------
+  </script>
+
+  <script>
+
+
+
+
+    // var car = {
+    //   title: "Audi",
+    //   price: 1000,
+    //   color: "white",
+    //   isEngineStarted: false,
+    //   show: function () {
+    //     console.log("Avtomobil " + this.title + " stoit " + this.price);
+    //   }
+    // };
+
+    // car.show();
+    // // delete svoistva
+
+    // delete car.show;
+    // console.log(car);
+
+
+
+    // // var car2 = {
+    // //   title: "BMW",
+    // //   price: 1100,
+    // //   color: "black",
+    // //   isEngineStarted: false,
+    // // };
+
+    // car.start = startEngine;
+    // car.start();
+    // car2.start = car.start;
+    // car2.start();
+
+    // // function startEngine() {
+    // //   if (!this.isEngineStarted) {
+    // //     this.isEngineStarted = true;
+    // //     console.log("Avtomobil " + this.title + " vkluchen");
+    // //   }
+    // // }
+
+    // car.stop = function () {
+    //   if (!this.isEngineStarted) {
+    //     this.isEngineStarted = false;
+    //     console.log("Avtomobil " + this.title + " vykluchen");
+    //   }
+    // }
+    // car.stop();
+    // car2.off = car.stop;
+    // car2.off();
+
+
+    // function constructor - это функция на основе которой создается объект, эта функция генерирует объект и наполняет его свойствами.
+    // function Car(title, price, year) {
+    //   this.title = title;
+    //   this.price = price;
+    //   this.year = year;
+    //   this.show = function () {
+    //     console.log("Avtomobil " + this.title + " stoit " + this.price);
+    //   }
+    // }
+
+
+    // var car1 = new Car("Audi", 1000, 2018);// после нью кар - запускается функция конструктор
+    // var car2 = new Car("BMW", 1500, 2021);
+    // var car3 = new Car("Skoda", 9000, 2019);
+
+    // var cars = [car1, car2, car3];
+    // // for (var item of cars) {
+    // //   car.show();
+    // // }
+
+    // alert(cars[cars.length - 1].title);
+
+    // function getMaxPrice(mas) {
+    //   var max = mas[0];
+    //   for (var i = 1; i < mas.length; i++) {
+    //     if (max.price <script mas[i].price) {
+    //       max = mas[i];
+    //     }
+    //   }
+    //   return max; // объект со свойствами
+    // }
+    // var carMaxPrice = getMaxPrice(cars);
+    // alert("samiy dorogoy avto - " + carMaxPrice.title + ", ego cena " + carMaxPrice.price);
+
+
+  </script>
+</head>
+
+<body></body>
+
+</html>
