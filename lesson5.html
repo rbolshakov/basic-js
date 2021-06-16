@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #51504c;
+      font-family: monospace;
+    }
+
+    table {
+      border-spacing: 0px;
+    }
+
+    td {
+      font-size: 50px;
+      text-align: center;
+      width: 90px;
+      height: 90px;
+      color: #000;
+
+    }
+
+    #begintr td,
+    #endtr td {
+      color: #000;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="table_container">
+    </div>
+  </div>
+
+  <!-- <div class=""></div> -->
+  <!-- <div class="" id="block">
+    <h1 id="header">hello</h1>
+  </div> -->
+
+  <!-- <h1>zagolovok 1</h1>
+  <h1>zagolovok 2</h1>
+  <h1>zagolovok 3</h1>
+  <h1>zagolovok 4</h1>
+  <h1>zagolovok 5</h1>
+  <h1>zagolovok 6</h1> -->
+  <!-- <div class="">
+    <div class="">
+      vlojjeniy block
+
+    </div>
+  </div>
+  <ul>
+    <li>elem 1</li>
+    <li>elem 2</li>
+    <li>elem 3</li>
+    <li>elem 4</li>
+    <li>elem 5</li> -->
+
+  <!-- </ul> -->
+  <script>
+    let chessFigures = { // создаем массив кодами для символов 
+      paw: '&#9823;',
+      knight: '&#9822;',
+      bishop: '&#9821;',
+      castle: '&#9820',
+      queen: '&#9819;',
+      king: '&#9812;'
+    }
+    let blackCell = '#769656';
+    let whiteCell = '#eeeed2';
+
+    // генерирую шахматные клетки
+    let table = document.createElement('table');
+    let flag = true;
+    for (let i = 0; i < 8; i++) {
+      let tr = document.createElement('tr');
+      table.appendChild(tr);
+
+      for (let j = 0; j < 8; j++) {
+
+        if (j == 0) { flag = !flag }
+        let td = document.createElement('td');
+        if (flag && j % 2 == 0) {
+          td.style.backgroundColor = blackCell //"черные" клетки 
+        }
+        else {
+          td.style.backgroundColor = whiteCell // "белые" клетки
+        }
+        if (!flag && j % 2 != 0) {
+          td.style.backgroundColor = blackCell
+        }
+        tr.appendChild(td);
+      }
+    }
+    document.querySelector('#table_container').appendChild(table);
+
+    let tdlist = document.querySelectorAll('td'); // собираю все ячейки в коллекцию 
+
+    for (i = 48; i < tdlist.length; i++) {
+      tdlist[i].style.color = '#fff'; // окрашиваем черные фигуры
+    }
+
+    let tdArr = Array.from(tdlist); //преобразую коллекцию узлов Nodelist в массив для использования функции фильтрации 
+
+    let result = tdArr.filter(function (elem) { // Расставляем символы шахматных фигур
+
+      switch (tdArr.indexOf(elem)) { // расставляем фигуры кроме пешек по своим местам
+        case 0: case 7: case 56: case 63:
+          elem.innerHTML = chessFigures.castle;
+          break;
+        case 1: case 6: case 57: case 62:
+          elem.innerHTML = chessFigures.knight;
+          break;
+        case 2: case 5: case 58: case 61:
+          elem.innerHTML = chessFigures.bishop;
+          break;
+        case 4: case 60:
+          elem.innerHTML = chessFigures.king;
+          break;
+        case 3: case 59:
+          elem.innerHTML = chessFigures.queen;
+          break;
+      }
+
+      if (tdArr.indexOf(elem) > 7 && tdArr.indexOf(elem) < 16 || tdArr.indexOf(elem) > 47 && tdArr.indexOf(elem) < 56) { // добавляем пешки
+        elem.innerHTML = chessFigures.paw;
+      }
+    }
+    );
+
+    let trlist = document.querySelectorAll('tr');
+    // циклы для создания цифр
+    for (let i = 0, j = 8; i < trlist.length; i++, j--) {
+      trlist[i].insertAdjacentHTML('afterBegin', '<td style="color: black">' + j + '</td>');
+    }
+    for (let i = 0; i < 8; i++) {
+      trlist[i].insertAdjacentHTML('beforeEnd', '<td style="color: black; transform:rotate(180deg); ">' + (8 - i) + '</td>');
+    }
+
+    table = document.querySelector('table');
+    trlist[0].insertAdjacentHTML('beforeBegin', '<tr id="begintr">  </tr>');
+    trlist[7].insertAdjacentHTML('afterEnd', '<tr id="endtr">  </tr>');
+
+    for (let i = 0, c = 72; i < 8; i++, c--) { // создаем буквы в верхней строке
+      let td = document.createElement('td');
+      td.style.transform = "rotate(180deg)";
+      td.innerHTML = String.fromCharCode(c);
+      document.querySelector('#begintr').appendChild(td);
+
+    }
+    document.querySelector('#begintr').insertAdjacentHTML('afterBegin', '<td></td>');
+
+    for (let i = 0, c = 72; i < 8; i++, c--) { // создаем буквы в нижней строке
+      let td = document.createElement('td');
+      td.innerHTML = String.fromCharCode(c);
+      document.querySelector('#endtr').appendChild(td);
+    }
+    document.querySelector('#endtr').insertAdjacentHTML('afterBegin', '<td ></td>');
+
+
+    // var table = document.createElement("table"), tr, td;
+    // for (var i = 1; i <= 8; i++) {
+    //   tr = document.createElement("tr");
+    //   table.append(tr);
+    //   for (var j = 1; j <= 8; j++) {
+    //     td = document.createElement("td");
+    //     td.innerHTML = "<h2>" + (i * j) + "</h2>";
+    //     td.style.border = '1px solid gray';
+    //     tr.append(td);
+
+    //   }
+    // }
+    // td.style.border = '1px solid gray';
+    // // console.log(table);
+    // document.querySelector("div").append(table);
+
+
+    // var link = document.createElement("a");
+    // link.href = "google.com";
+    // link.innerText = "go to google";
+    // document.querySelector('div div').append(link);
+    // var block = document.
+    // var text = document.createTextNode("usual text!!!");
+    // document.body.append(text);
+
+
+
+
+
+    // var list = document.querySelector("ul");
+    // var newItem = document.createElement("li");
+    // newItem.innerText = "Noviy Element";
+    // list.insertBefore(newItem, list.children[2]);
+
+    // list.append(newItem);
+
+
+    // var headers = document.querySelectorAll("h1");
+    // for (var i = 0; size = 20, i < headers.length; size += 15, i++) {
+    //   if (i % 2 == 0) {
+    //     headers[i].style.color = "red";
+    //   } else {
+    //     headers[i].style.color = "blue";
+
+    //   }
+    //   headers[i].style.fontSize = size + "px";
+    //   headers[i].className = "a b c";
+    // }
+
+    // var header = document.getElementById("header");
+    // header.insertAdjacentHTML('Marker, v kotorom ukajem kuda vstavlayem element', 'chto vstavlyaem')
+    // header.insertAdjacentHTML('beforeBegin', 'demo')
+    // header.insertAdjacentHTML('afterBegin', 'demo')
+    // header.insertAdjacentHTML('beforeEnd', 'demo')
+    // header.insertAdjacentHTML('afterEnd', 'demo')
+    // header.style.color = "red";
+    // header.id = "x";
+    // header.className = "a";
+
+    // var block = document.getElementsByName("div")[0];
+    // block.innerHTML += "<h2>Vlojenniy block!!! </h2>";
+    // var block = document.querySelector("div");
+    // for (var i = 1; i < 10; i++) {
+    //   block.insertAdjacentHTML('beforeBegin', '<h2> Element #' + i + '</h2>');
+    // }
+
+
+
+  </script>
+</body>
+
+</html>

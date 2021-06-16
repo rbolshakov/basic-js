@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="small">
+
+      <img id="1" src="img\small\1.jpg" alt="Jacque Fresco" onclick="f(this.id)">
+      <img id="2" src="img\small\2.jpg" alt="Jacque Fresco" onclick="f(this.id)">
+      <img id="3" src="img\small\3.jpg" alt="Jacque Fresco" onclick="f(this.id)">
+
+    </div>
+
+    <div class="big">
+      <img id="big" src="" onerror=ImageError()>
+    </div>
+
+  </div>
+  <script>
+    function f(id) {
+      var s = document.getElementById(id);
+      var p = s.src.replace('small', 'big');
+      console.log(p);
+
+
+      var b = document.getElementById("big");
+      b.src = p;
+
+    }
+
+    function ImageError() {
+      alert('А нету, большой картинки!');
+    }
+  </script>
+
+</body>
+
+</html>
